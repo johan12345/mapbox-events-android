@@ -25,9 +25,9 @@ subprojects {
     apply plugin: 'idea'
     apply from: "${rootDir}/gradle/dependencies.gradle"
 
-    afterEvaluate {
+    /*afterEvaluate {
         tasks.findByName('check').dependsOn('checkstyle')
-    }
+    }*/
 }
 
 def TESTABLE_MODULES = ["libcore", "libtelemetry", "liblocation"]
