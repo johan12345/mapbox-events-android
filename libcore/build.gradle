@@ -41,7 +41,9 @@ android {
 }
 
 dependencies {
-    compileOnly dependenciesList.gmsLocation
+    //compileOnly dependenciesList.gmsLocation
+    implementation 'androidx.annotation:annotation:1.4.0'
+    implementation 'androidx.core:core:1.8.0'
 
     testImplementation dependenciesList.junit
     testImplementation dependenciesList.mockito

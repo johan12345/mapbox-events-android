@@ -2,8 +2,6 @@ package com.mapbox.android.core.location;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
 
 import static com.mapbox.android.core.location.Utils.checkNotNull;
 import static com.mapbox.android.core.location.Utils.isOnClasspath;
@@ -44,17 +42,17 @@ public final class LocationEngineProvider {
   public static LocationEngine getBestLocationEngine(@NonNull Context context) {
     checkNotNull(context, "context == null");
 
-    boolean hasGoogleLocationServices = isOnClasspath(GOOGLE_LOCATION_SERVICES);
-    if (isOnClasspath(GOOGLE_API_AVAILABILITY)) {
+    boolean hasGoogleLocationServices = false; //isOnClasspath(GOOGLE_LOCATION_SERVICES);
+    /*if (isOnClasspath(GOOGLE_API_AVAILABILITY)) {
       // Check Google Play services APK is available and up-to-date on this device
       hasGoogleLocationServices &= GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context)
         == ConnectionResult.SUCCESS;
-    }
+    }*/
     return getLocationEngine(context, hasGoogleLocationServices);
   }
 
   private static LocationEngine getLocationEngine(Context context, boolean isGoogle) {
-    return isGoogle ? new LocationEngineProxy<>(new GoogleLocationEngineImpl(context.getApplicationContext())) :
+    return //isGoogle ? new LocationEngineProxy<>(new GoogleLocationEngineImpl(context.getApplicationContext())) :
       new LocationEngineProxy<>(new MapboxFusedLocationEngineImpl(context.getApplicationContext()));
   }
 }

@@ -7,8 +7,6 @@ import android.location.LocationManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.android.gms.location.LocationResult;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -96,15 +94,10 @@ public final class LocationEngineResult {
   @Nullable
   public static LocationEngineResult extractResult(Intent intent) {
     LocationEngineResult result = null;
-    if (isOnClasspath(GOOGLE_PLAY_LOCATION_RESULT)) {
+    /*if (isOnClasspath(GOOGLE_PLAY_LOCATION_RESULT)) {
       result = extractGooglePlayResult(intent);
-    }
+    }*/
     return result == null ? extractAndroidResult(intent) : result;
-  }
-
-  private static LocationEngineResult extractGooglePlayResult(Intent intent) {
-    LocationResult result = LocationResult.extractResult(intent);
-    return result != null ? LocationEngineResult.create(result.getLocations()) : null;
   }
 
   private static LocationEngineResult extractAndroidResult(Intent intent) {
